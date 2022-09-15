@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: resultserver-deploy
+  name: resultserver-deploy
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: resultserver-deploy
+  template:
+    metadata:
+      labels:
+        app: resultserver-deploy
+    spec:
+      containers:
+      - image: hivelkrasniqi/web-server:1.0
+        name: resultserver
+        ports:
+          - containerPort: 80
+        env:
+        - name: MYSQL_PASSWORD
+        #  value: Clarusway_1
+          valueFrom:
+            secretKeyRef:
+              name: mysql-secret
+              key: mysql_admin_password
+        envFrom:
+          - configMapRef:
+              name: server-config
+        resources: {}
