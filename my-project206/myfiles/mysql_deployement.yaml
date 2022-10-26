@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: myapp-dbdeployment
+  labels:
+    app: phonebook
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mysql
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: phonebook
+    spec:
+      containers:
+        - name: mysql-container
+          image: mysql:5.7
+          ports:
+            - containerPort: 3306
+          volumeMounts:
+            - mountPath: "/var/lib/mysql"
+              name: mysqlvolume
+          env:
+            - name: MYSQL_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: mysqlsecret
+                  key: MYSQL_PASSWORD
+      volumes:
+        - name: mysqlvolume
+          persistentVolumeClaim:
+            claimName: myapp-pvc
+
+
+
+            

@@ -1,0 +1,20 @@
+ADD/DELETE/UPDATE DEPLOYMENT AND SERVICE
+1. Dockerfile                     # completed
+2. web_server_deployment.yml      # completed
+3. web_server_service.yaml        # completed
+
+SEARCH DEPLOYMENT AND SERVICE
+1. Dockerfile                     # completed
+2. result_server_deployment.yml   # completed
+3. result_server_service.yaml     # completed
+
+DATABASE DEPLOYMENT AND SERVICE
+1. mysql_deployement.yml          # completed
+2. mysql_service.yaml             # completed
+3. persistent_volume.yaml         # completed
+4. persistent_volume_claim.yaml   # completed
+
+SECRETS AND CONFIGMAP
+1. mysql-secret.yaml              # completed
+2. database_configmap.yaml        # To be delivered by students
+3. servers_configmap.yaml         # To be delivered by students

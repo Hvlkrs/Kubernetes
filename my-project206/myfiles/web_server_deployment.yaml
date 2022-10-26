@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: myapp-webdeployment
+  labels:
+    app: phonebook
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: phonebook
+  template:
+    metadata:
+      labels:
+        app: phonebook
+    spec:
+      containers:
+        - name: web-container
+          image: hivelkrasniqi/web
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 80
+      env:
+        - configMapRef:
+            name: my-config
+        - secretRef:
+            name: mysql-secret
